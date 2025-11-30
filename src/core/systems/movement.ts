@@ -9,9 +9,9 @@ import { Velocity } from "../traits/velocity";
  * Movement system inspired by Sebastian Lague's Ant Simulation
  * Handles random steering, collision with boundaries, and velocity-based movement
  */
-export function createMovementSystem(world: World) {
+export function createMovementSystem(world: World, config: typeof simulationConfig) {
   return (deltaTime: number) => {
-    const { gridSize } = simulationConfig;
+    const { gridSize } = config;
     const halfWidth = gridSize.width / 2;
     const halfHeight = gridSize.height / 2;
 
