@@ -1,5 +1,5 @@
 import type { World } from "koota";
-import { simulationConfig } from "../../simulation_config";
+import { simulationConfig } from "../../scenes/simulation/simulation_config";
 import { AntSettings, AntState } from "../traits/ant";
 import { Position } from "../traits/position";
 import { Rotation } from "../traits/rotation";
