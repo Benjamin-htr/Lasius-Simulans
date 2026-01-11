@@ -1,22 +1,19 @@
 import { extend, useFrame } from "@react-three/fiber";
-import { useQuery } from "koota/react";
-import { useControls } from "leva";
+import { useWorld } from "koota/react";
 import { useMemo } from "react";
 import { BoxLineGeometry as THREEBoxLineGeometry } from "three/examples/jsm/Addons.js";
 import { createMovementSystem } from "../../core/systems/movement";
-import { AntSettings } from "../../core/traits/ant";
-import { Ant } from "../ant/ant";
-import { simulationConfig } from "./simulation_config";
-import { world } from "./world_init";
+import { Ants } from "../ant/ant";
+import { useSimulation } from "./simulation_context";
 
 const BoxLineGeometry = extend(THREEBoxLineGeometry);
 
 export function Simulation() {
-  const ants = useQuery(AntSettings);
-  const controlledConfig = useControls(simulationConfig);
-  const { gridSize } = controlledConfig;
+  const { config } = useSimulation();
+  const world = useWorld();
+  const { gridSize } = config;
 
-  const movementSystem = useMemo(() => createMovementSystem(world, controlledConfig), [controlledConfig]);
+  const movementSystem = useMemo(() => createMovementSystem(world, config), [config, world]);
 
   useFrame((_, delta) => {
     movementSystem(delta);
@@ -26,9 +23,7 @@ export function Simulation() {
     <>
       <ambientLight intensity={Math.PI} />
 
-      {ants.map((entity) => (
-        <Ant key={entity} entity={entity} />
-      ))}
+      <Ants />
 
       <lineSegments>
         <BoxLineGeometry args={[gridSize.width, gridSize.height, 1, 1, 1]} />

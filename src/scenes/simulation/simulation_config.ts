@@ -1,9 +1,10 @@
+export const ANT_COUNT = 5000;
+
 export const simulationConfig = {
   // Grid dimensions (we take 1unit = 1mm)
-  gridSize: { width: 200, height: 100 },
+  gridSize: { width: 300, height: 150 },
   antSize: {
-    width: 4,
-    length: 4,
+    length: 3,
     height: 0.5,
   },
 };
