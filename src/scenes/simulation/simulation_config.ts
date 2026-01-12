@@ -1,4 +1,5 @@
-export const ANT_COUNT = 5000;
+export const ANT_COUNT = 200;
+export const ANT_MAX_Z = 50;
 
 export const simulationConfig = {
   // Grid dimensions (we take 1unit = 1mm)
